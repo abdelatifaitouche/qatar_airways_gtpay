@@ -1,4 +1,3 @@
-import pandas as pd
 from datetime import datetime
 from csv import writer
 from django.core.mail import send_mail, EmailMessage
