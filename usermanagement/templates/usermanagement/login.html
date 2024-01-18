@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GTPAY</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/login.css' %}">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+</head>
+<body>
+
+
+    <div class="login-container">
+        <div class="login-form-image">
+        </div>
+        <div class="login-form">
+            <div class="login-header">
+                <h1>Qatar airways GTPAY</h1>
+                <h3>powered by <span>Grant thornton</span></h3>
+            </div>
+            
+            <form action="" method="POST">
+            {% csrf_token %}
+                <div class="input-text">
+                    <input type="text" name="email" required id="email-field"/>
+                    <div class="underline"></div>
+                    <label>E-mail</label>
+                </div>
+
+                <div class="input-text">
+                    <input type="password" name="password" required/>
+                    <div class="underline"></div>
+
+                    <label>password</label>
+                </div>
+
+                
+                <div class="flex-right">
+                <a href="" >Forgot password ?</a>
+                </div>
+                
+
+                
+                
+               
+                <button type="submit">Login</button>
+            </form>
+            
+          
+        </div>
+    </div>
+    {% for message in messages %}
+            <div class="errors animate__animated animate__fadeInDownBig">
+                <p>Please, check your informations</p>
+            </div>
+    {% endfor %}
+    <script>
+        
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security OTP</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/login.css' %}">
+</head>
+<body>
+
+
+    <div class="login-container">
+        <div class="login-form-image">
+        </div>
+        <div class="login-form">
+            <div class="login-header">
+                <h1>For security purpose</h1>
+                <h3>You will receive a code on your <span>email<span></h3>
+            </div>
+            
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="input-text">
+                    <input type="text" name="otp_code" id="otpInput" required/>
+                    <div class="underline"></div>
+                    <label>Code</label>
+                </div>
+                               
+                <button id='submitBtn' type="submit">Verify</button>
+                <a href="{% url 'resendOtp' %}" class="hide" id="resendBtn"> resend </a>
+            </form>
+          <p id='safeTimerDisplay'><p>
+        </div>
+
+    </div>
+
+    {% for message in messages %}
+        <div class="errors">
+            <p>{{message}}</p>
+        </div>
+    {% endfor %}
+    <script>
+        //start the timer as soon as the page is loaded up 
+        //if the 
+        var submitBtn = document.querySelector('#submitBtn')
+        let resendBtn = document.querySelector('#resendBtn')
+        var otpInput = document.querySelector('#otpInput')
+
+        var sec = 10;
+        var timer = setInterval(function(){
+            document.getElementById('safeTimerDisplay').innerHTML='00:'+sec;
+                sec--;
+                if (sec < 0) {
+                 clearInterval(timer);
+                 console.log('timer is up')
+                 submitBtn.classList.add('hide')
+                 resendBtn.classList.remove('hide')
+
+                }
+        },
+        1000);
+
+        submitBtn.onclick = function(){
+            if (otpInput.value != ''){
+                console.log('clicked and its not empty')
+            }
+            
+        }
+
+    </script>
+</body>
+</html>

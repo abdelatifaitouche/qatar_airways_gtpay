@@ -1,0 +1,77 @@
+{% load static%}
+
+<!DOCTYPE html>
+
+
+<html>
+<head>
+    <title>LOGIN</title>
+    <link rel='stylesheet'  href="{% static '/css/login.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="login-container">
+
+            <form  method="POST" action="">
+                {% csrf_token %}
+                <div>
+                    <h3>Ericson</h3>
+                    <h4>Powered by<span class="title"> Grant Thornton</span></h4>
+                </div>
+                
+                <h2>Connectez vous!</h2>
+                <div class="input-div one focus">
+                    <div class="i">
+                            <i class="fas fa-user"></i>
+                    </div>
+                    <div>
+                        
+                        <input type="text" name='username' class='input' placeholder='Username'>
+                    </div>
+
+                </div>
+
+                <div class="input-div two">
+                    <div class="i">
+                        <i class="fa-solid fa-lock fa-shake"></i>
+                    </div>
+                    <div>
+                        
+                        <input type="password" name='password' class="input" placeholder="Password">
+                    </div>
+
+                </div>
+                {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %} 
+                            <div class="error-message">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
+
+                 
+
+                <input type="submit" value="login" class='btn'>
+            </form>
+
+
+
+        </div>
+
+    </div>
+    
+    <script src="{% static '/js/script.js'%}">
+
+    </script>
+
+</body>
+
+</html>

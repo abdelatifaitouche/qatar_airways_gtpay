@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ericson Dashboard</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="{% static '/css/style.css'%}">
+    <link rel="stylesheet" href="{% static '/css/upload.css'%}">
+</head>
+
+<body>
+    <!-- =============== Navigation ================ -->
+    {% include 'app/navigation_bar.html'%}
+    {% block content%}
+    {% endblock %} 
+
+        <!-- ========================= Main ==================== -->
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+
+            
+
+                <div class="user">
+                    <img src="assets/imgs/customer01.jpg" alt="">
+                </div>
+            </div>
+
+            <!-- ======================= Cards ================== -->
+         
+
+            <!-- ================ Order Details List ================= -->
+            <div class='centered'>
+                <div class="wrapper">
+
+                    
+                    <form method='POST' action='' enctype='multipart/form-data'>
+                        {% csrf_token %}
+                        <ion-icon name="cloud-download-outline" class="uploadfile"></ion-icon>
+                        <p>Telecharger les fiches de paie</p>
+                        <input required multiple name="file" type="file"  class="file-input"/>
+                        {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                                <li{% if message.tags %} class="message" {% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+
+                        {% if form.errors %}
+                            {% for field in form %}
+                                {% for error in field.errors %} 
+                                    <div class="error-message">
+                                        <strong>{{ error|escape }}</strong>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                        {% endif %}
+                        <button type="submit" class="btn">Upload</button>
+                    </form>
+               
+
+                </div>
+            </div>
+
+        
+               
+               
+               
+
+
+
+                <!-- ================= New Customers ================ -->
+            
+            
+        </div>
+    </div>
+
+    <!-- =========== Scripts =========  -->
+    <script src="{% static '/js/script.js'%}"></script>
+
+    <!-- ====== ionicons ======= -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>
